@@ -4,7 +4,8 @@
   "description": "boilerplate",
   "main": "index.js",
   "scripts": {
-    "migrate": "npx sequelize-cli db:migrate",
+    "db-create": "npx sequelize db:create",
+    "db-migrate": "npx sequelize db:migrate",
     "test": "jest --verbose",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
@@ -13,7 +14,7 @@
   },
   "author": "curriki",
   "license": "MIT",
-  "dependencies": {
+  "dependencies": {    
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -21,13 +22,17 @@
     "joi": "^17.11.0",
     "joi-password-complexity": "^5.2.0",
     "jsonwebtoken": "^9.0.2",
+    "nock": "^13.4.0",
     "nodemailer": "^6.9.8",
     "pg": "^8.11.3",
-    "sequelize": "^6.35.2",
-    "swagger-ui-express": "^5.0.0"
+    "sequelize": "^6.19.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "sequelize-cli": "^6.4.1"
   }
 }

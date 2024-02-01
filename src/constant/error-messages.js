@@ -38,4 +38,10 @@ module.exports = {
   INVALID_PARAMETERS: {
     message: "Invalid parameters.",
   },
+  ALREADY_EXISTS: {
+    message: "Title Already Exist!",
+  },
+  NOT_FOUND: {
+    message: "Record Not Found!",
+  }
 };
