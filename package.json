@@ -14,7 +14,8 @@
   },
   "author": "curriki",
   "license": "MIT",
-  "dependencies": {    
+  "dependencies": {
+    "@sequelize/core": "^7.0.0-alpha.36",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "C2E-PLAYER-APP-NODEJS"
+    "title": "CEE-PUBLISHER-SERVICE"
   },
   "schemes": ["http", "https"],
   "paths": {
@@ -486,6 +486,963 @@
                 }
               }
             }
+        }
+      }
+    },
+    "/api/v1/media-owner/create": {
+      "post": {
+        "x-swagger-router-controller": "mediaowner",
+        "operationId": "create-mediaowner",
+        "tags": ["Media Routes"],
+        "summary": "Create Media Owner Endpoint",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "description": "Media Owner details",
+            "schema": {
+              "type": "object",
+              "required": ["title"],
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Brightcove",
+                  "required":true
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "about": {
+                  "type": "string",
+                  "example": "Test"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "result": {
+                  "$ref": "#/components/schemas/MediaOwner-CreateUpdateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Title Already Exist!"
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/media-owner/update": {
+      "patch": {
+        "x-swagger-router-controller": "mediaowner",
+        "operationId": "update-mediaowner",
+        "tags": ["Media Routes"],
+        "summary": "Update Media Owner Endpoint",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "description": "Media Owner details",
+            "schema": {
+              "type": "object",
+              "required": ["id", "title"],
+              "properties": {
+                "id": {
+                  "type": "text",
+                  "example": "82ded90c-3de2-4ef6-941e-3283d03471c3"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Brightcove"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "about": {
+                  "type": "string",
+                  "example": "Test"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "result": {
+                  "$ref": "#/components/schemas/MediaOwner-CreateUpdateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "id is required"
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/media-owner": {
+      "get": {
+        "x-swagger-router-controller": "mediaowner",
+        "operationId": "get-all-mediaowner",
+        "tags": ["Media Routes"],
+        "summary": "Get All Media Owners Endpoint",        
+        "responses": {
+          "200": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "count": {
+                  "type": "number",
+                  "example": 1
+                },
+                "result": {
+                  "$ref": "#/components/schemas/MediaOwner-GetAllAndRowResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/media-owner/get": {
+      "get": {
+        "x-swagger-router-controller": "mediaowner",
+        "operationId": "get-single-mediaowner",
+        "tags": ["Media Routes"],
+        "summary": "Get Row Record Or Single Media Owner Endpoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "result": {
+                  "$ref": "#/components/schemas/MediaOwner-GetAllAndRowResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "id is required"
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/media-owner/delete": {
+      "delete": {
+        "x-swagger-router-controller": "mediaowner",
+        "operationId": "delete-single-mediaowner",
+        "tags": ["Media Routes"],
+        "summary": "Delete Row Record Or Single Media Owner Endpoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "id is required"
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/media-library/create": {
+      "post": {
+        "x-swagger-router-controller": "medialibrary",
+        "operationId": "create-medialibrary",
+        "tags": ["Media Routes"],
+        "summary": "Create Media Library Endpoint",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "description": "Media Library details",
+            "schema": {
+              "type": "object",
+              "required": ["title", "type", "resource"],
+              "properties": {
+                "mediaOwnerId": {
+                  "type": "string",
+                  "example": "7d6c523a-39f1-4b20-8e50-dc31630cf489"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "resource": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "parentId": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "identifierType": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "identifier": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "thumbnail": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "collection": {
+                  "type": "string",
+                  "example": "Test"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "result": {
+                  "$ref": "#/components/schemas/MediaLibrary-CreateUpdateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Title Already Exist!"
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/media-library/update": {
+      "patch": {
+        "x-swagger-router-controller": "medialibrary",
+        "operationId": "update-medialibrary",
+        "tags": ["Media Routes"],
+        "summary": "Update Media Library Endpoint",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "description": "Media Library details",
+            "schema": {
+              "type": "object",
+              "required": ["id", "title", "type", "resource"],
+              "properties": {
+                "id": {
+                  "type": "text",
+                  "example": "82ded90c-3de2-4ef6-941e-3283d03471c3"
+                },
+                "mediaOwnerId": {
+                  "type": "string",
+                  "example": "7d6c523a-39f1-4b20-8e50-dc31630cf489"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "resource": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "parentId": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "identifierType": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "identifier": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "thumbnail": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "collection": {
+                  "type": "string",
+                  "example": "Test"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "result": {
+                  "$ref": "#/components/schemas/MediaLibrary-CreateUpdateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "id is required"
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/media-library": {
+      "get": {
+        "x-swagger-router-controller": "medialibrary",
+        "operationId": "get-all-medialibrary",
+        "tags": ["Media Routes"],
+        "summary": "Get All Media Library Endpoint",        
+        "responses": {
+          "200": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "count": {
+                  "type": "number",
+                  "example": 1
+                },
+                "result": {
+                  "$ref": "#/components/schemas/MediaLibrary-GetAllAndRowResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/media-library/get": {
+      "get": {
+        "x-swagger-router-controller": "medialibrary",
+        "operationId": "get-single-medialibrary",
+        "tags": ["Media Routes"],
+        "summary": "Get Row Record Or Single Media Library Endpoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "result": {
+                  "$ref": "#/components/schemas/MediaLibrary-GetAllAndRowResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "id is required"
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/media-library/delete": {
+      "delete": {
+        "x-swagger-router-controller": "medialibrary",
+        "operationId": "delete-single-medialibrary",
+        "tags": ["Media Routes"],
+        "summary": "Delete Row Record Or Single Media Library Endpoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response Format",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "id is required"
+                },
+                "result": {
+                  "type": "boolean",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MediaOwner-CreateUpdateResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "85eb1c17-01f3-4fba-b675-04e0bf871521"
+          },
+          "title": {
+            "type": "string",
+            "example": "Brightcove"
+          },
+          "description": {
+            "type": "string",
+            "example": "Test"
+          },
+          "about": {
+            "type": "string",
+            "example": "Test"
+          },
+          "createdAt": {
+            "type": "timestamp",
+            "example": "2024-02-02T11:50:07.368Z"
+          },
+          "updatedAt": {
+            "type": "timestamp",
+            "example": "2024-02-02T11:50:07.368Z"
+          }
+        }
+      },
+      "MediaOwner-GetAllAndRowResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "text",
+            "example": "82ded90c-3de2-4ef6-941e-3283d03471c3"
+          },
+          "title": {
+            "type": "string",
+            "example": "Brightcove"
+          },
+          "description": {
+            "type": "string",
+            "example": "Test"
+          },
+          "about": {
+            "type": "string",
+            "example": "Test"
+          },
+          "createdAt": {
+            "type": "timestamp",
+            "example": "2024-02-01T13:10:55.889Z"
+          },
+          "updatedAt": {
+            "type": "timestamp",
+            "example": "2024-02-01T13:10:55.889Z"
+          },
+          "MediaLibrary":{
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "text",
+                  "example": "5ff590b4-a17b-4dee-b5ee-4f59c6882840"
+                },
+                "mediaOwnerId": {
+                  "type": "text",
+                  "example": "82ded90c-3de2-4ef6-941e-3283d03471c3"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "resource": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "parentId": {
+                  "type": "string",
+                  "example": "Test"
+                },                      
+                "identifierType": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "identifier": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "thumbnail": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "collection": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "createdAt": {
+                  "type": "timestamp",
+                  "example": "2024-02-01T13:10:55.889Z"
+                },
+                "updatedAt": {
+                  "type": "timestamp",
+                  "example": "2024-02-01T13:10:55.889Z"
+                }     
+              }
+            }
+          }
+        }
+      },
+      "MediaLibrary-CreateUpdateResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "85eb1c17-01f3-4fba-b675-04e0bf871521"
+          },
+          "mediaOwnerId": {
+            "type": "string",
+            "example": "7d6c523a-39f1-4b20-8e50-dc31630cf489"
+          },
+          "title": {
+            "type": "string",
+            "example": "Test"
+          },
+          "description": {
+            "type": "string",
+            "example": "Test"
+          },
+          "type": {
+            "type": "string",
+            "example": "Test"
+          },
+          "resource": {
+            "type": "string",
+            "example": "Test"
+          },
+          "parentId": {
+            "type": "string",
+            "example": "Test"
+          },
+          "identifierType": {
+            "type": "string",
+            "example": "Test"
+          },
+          "identifier": {
+            "type": "string",
+            "example": "Test"
+          },
+          "thumbnail": {
+            "type": "string",
+            "example": "Test"
+          },
+          "collection": {
+            "type": "string",
+            "example": "Test"
+          },
+          "createdAt": {
+            "type": "timestamp",
+            "example": "2024-02-02T11:50:07.368Z"
+          },
+          "updatedAt": {
+            "type": "timestamp",
+            "example": "2024-02-02T11:50:07.368Z"
+          }
+        }
+      },
+      "MediaLibrary-GetAllAndRowResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "text",
+            "example": "82ded90c-3de2-4ef6-941e-3283d03471c3"
+          },
+          "mediaOwnerId": {
+            "type": "string",
+            "example": "7d6c523a-39f1-4b20-8e50-dc31630cf489"
+          },
+          "title": {
+            "type": "string",
+            "example": "Test"
+          },
+          "description": {
+            "type": "string",
+            "example": "Test"
+          },
+          "type": {
+            "type": "string",
+            "example": "Test"
+          },
+          "resource": {
+            "type": "string",
+            "example": "Test"
+          },
+          "parentId": {
+            "type": "string",
+            "example": "Test"
+          },
+          "identifierType": {
+            "type": "string",
+            "example": "Test"
+          },
+          "identifier": {
+            "type": "string",
+            "example": "Test"
+          },
+          "thumbnail": {
+            "type": "string",
+            "example": "Test"
+          },
+          "collection": {
+            "type": "string",
+            "example": "Test"
+          },
+          "createdAt": {
+            "type": "timestamp",
+            "example": "2024-02-01T13:10:55.889Z"
+          },
+          "updatedAt": {
+            "type": "timestamp",
+            "example": "2024-02-01T13:10:55.889Z"
+          },
+          "MediaOwner":{
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "text",
+                  "example": "5ff590b4-a17b-4dee-b5ee-4f59c6882840"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "about": {
+                  "type": "string",
+                  "example": "Test"
+                },
+                "createdAt": {
+                  "type": "timestamp",
+                  "example": "2024-02-01T13:10:55.889Z"
+                },
+                "updatedAt": {
+                  "type": "timestamp",
+                  "example": "2024-02-01T13:10:55.889Z"
+                }     
+              }
+            }
+          }
         }
       }
     }

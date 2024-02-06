@@ -1,6 +1,7 @@
 const ERROR_CODES = require("../constant/error-messages");
 const CustomError = require("../utils/error");
 const { MediaOwner, Sequelize, MediaLibrary } = require("../../models");
+const { Op } = require("@sequelize/core");
 
 class MediaOwnerService {
   static async create(params) {
@@ -47,6 +48,14 @@ class MediaOwnerService {
   }
 
   static async update(params) {
+    let _existingData = await MediaOwner.findOne({
+      where: { title: params.title, id: { [Op.ne]: params.id } },
+      raw: true,
+    });
+    if (_existingData) {
+      throw new CustomError(ERROR_CODES.ALREADY_EXISTS);
+    }
+
     let data = await MediaOwner.update(params, {
         where: {
             id: params.id
@@ -65,15 +74,23 @@ class MediaOwnerService {
   }
 
   static async delete(params) {
-    let data = await MediaOwner.destroy({
+    let relationshipRowData = await MediaLibrary.findOne({
+      where: { mediaOwnerId: params.id },
+      raw: true,
+    });
+    if ( relationshipRowData == null ) {
+      let data = await MediaOwner.destroy({
         where: {
             id: params.id
         }
-    });
-    if (data === 0) {
-      throw new CustomError(ERROR_CODES.NOT_FOUND);
+      });
+      if (data === 0) {
+        throw new CustomError(ERROR_CODES.NOT_FOUND);
+      }
+    } else {
+      throw new CustomError(ERROR_CODES.RELATIONSHIP_CHECK);
     }
-    return true;
+    return relationshipRowData;
   }
 
 }

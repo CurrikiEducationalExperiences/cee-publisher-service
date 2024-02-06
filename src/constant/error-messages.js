@@ -43,5 +43,8 @@ module.exports = {
   },
   NOT_FOUND: {
     message: "Record Not Found!",
+  },
+  RELATIONSHIP_CHECK: {
+    message: "Can not delete! This id has already maintained relationship data."
   }
 };

@@ -1,6 +1,7 @@
 const ERROR_CODES = require("../constant/error-messages");
 const CustomError = require("../utils/error");
 const {MediaOwner, Sequelize, MediaLibrary } = require("../../models");
+const { Op } = require("@sequelize/core");
 
 class MediaLibraryService {
   static async create(params) {
@@ -58,6 +59,14 @@ class MediaLibraryService {
   }
 
   static async update(params) {
+    let _existingData = await MediaLibrary.findOne({
+      where: { title: params.title, id: { [Op.ne]: params.id }, mediaOwnerId: params.mediaOwnerId },
+      raw: true,
+    });
+    if (_existingData) {
+      throw new CustomError(ERROR_CODES.ALREADY_EXISTS);
+    }
+
     let data = await MediaLibrary.update(params, {
         where: {
             id: params.id

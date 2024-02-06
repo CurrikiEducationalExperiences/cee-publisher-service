@@ -18,7 +18,7 @@ MediaOwner.get(
   validationMiddleware(MediaOwnerValidations.get, (isGet = true)),
   MediaOwnerController.get
 );
-MediaOwner.put(
+MediaOwner.patch(
   "/update",
   validationMiddleware(MediaOwnerValidations.update),
   MediaOwnerController.update

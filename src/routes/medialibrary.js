@@ -18,7 +18,7 @@ MediaLibrary.get(
   validationMiddleware(MediaLibraryValidations.get, (isGet = true)),
   MediaLibraryController.get
 );
-MediaLibrary.put(
+MediaLibrary.patch(
   "/update",
   validationMiddleware(MediaLibraryValidations.update),
   MediaLibraryController.update

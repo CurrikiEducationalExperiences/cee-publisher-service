@@ -9,8 +9,7 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.UUIDV4,
       },
-      mediaOwnerId: {
-        allowNull: false,
+      mediaOwnerId: {        
         type: Sequelize.TEXT
       },
       title: {
